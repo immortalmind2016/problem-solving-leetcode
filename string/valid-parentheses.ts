@@ -1,3 +1,4 @@
+//#20
 
 var isValid=function(s){
   let closes={
@@ -35,19 +36,24 @@ var isValid2=function(s){
   return true
 }
 
-var isValid3=function(s){
-  let closes={
-    "{":"}",
-    "[":"]",
-    "(":")"
-  }
-  for(let i=0;i<s.length/2;i++){
-  if(closes[s[i]]!==s[s.length-1-i]){
-    return false
-  }
+var isValid3=function(s:string){
+  const stack:string[]=[];
+  const parens="() {} []"
+  let i=0;
+
+  while(i<s.length){
+    stack.push(s[i]);
+    i++;
+    let open=stack[stack.length-2]
+    let close=stack[stack.length-1]
+    let concat=open+close;
+    if(parens.includes(concat)){
+      stack.pop()
+      stack.pop()
+    }
 
   }
-  return true
+  return stack.length==0
 }
 
-console.log(isValid("(([{}])"))
+console.log(isValid3("([{}])"))

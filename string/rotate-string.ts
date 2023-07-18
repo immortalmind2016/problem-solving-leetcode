@@ -1,3 +1,4 @@
+//#796
 function rotateString(s: string, goal: string): boolean {
   if(s.length!==goal.length){
       return false
@@ -25,10 +26,9 @@ function rotateString2(s: string, goal: string): boolean {
 
   let i=0;
 
-  //O(N)
+  
   let indexOf=s.indexOf(goal[0]);
 
-  //O(N)
   while(i<s.length){
       if(s[(indexOf+i) % s.length]!==goal[i]){
           return false
@@ -40,6 +40,6 @@ function rotateString2(s: string, goal: string): boolean {
 };
 
 function rotateString3(s: string, goal: string): boolean {
-  //O(N)
+
   return (s+s).includes(goal);
 };

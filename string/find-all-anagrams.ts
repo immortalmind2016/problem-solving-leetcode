@@ -68,5 +68,65 @@ MOVE END+1
 
   return answer
 }
-                    
-console.log(findAnagrams("abab","ab"))
+        
+
+
+var findAnagrams2=(s,p)=>{
+/*
+0 1 2 3 4 5 6 7 8 9 10
+c b a e b a b a c d p:"abc"
+s
+e
+
+FREQUENCY ARRAY FOR ALL a-z for current pointer
+FREQUENCY ARRAY FOR ALL a-z for p input
+ a b c
+[1,1,1,0,0,...]
+
+END = 0 
+SO current = [0,0,1,0,0,..]
+
+if(end-start == window of the p.length)
+COMPARE
+if greater 
+remove start element
+
+*/
+
+  let answer:number[]=[];
+  let pFreq:number[]=new Array(25).fill(0)
+  let currentFreq:number[]=new Array(25).fill(0)
+
+  let start=0;
+  let end=0
+
+  for(let i=0;i<p.length;i++){
+    let code=p[i].charCodeAt(0)-97
+    pFreq[code]=(pFreq[code]||0)+1
+  }
+
+  while(end<s.length){
+
+    let code=s[end].charCodeAt(0)-97
+    currentFreq[code]=(currentFreq[code]||0)+1
+
+    if(end-start>=p.length-1){ 
+  
+      let code=s[start].charCodeAt(0)-97
+
+      if(JSON.stringify(currentFreq)===JSON.stringify(pFreq)){
+        answer.push(start)
+      }
+      currentFreq[code]=(currentFreq[code]||1)-1
+      start++;
+    }
+    
+    end++
+  }
+
+ 
+
+  return answer
+}
+
+console.log(findAnagrams2("cbaebabacd","abc"))

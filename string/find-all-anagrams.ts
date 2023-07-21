@@ -94,30 +94,31 @@ remove start element
 */
 
   let answer:number[]=[];
-  let pFreq:number[]=new Array(25).fill(0)
-  let currentFreq:number[]=new Array(25).fill(0)
+  let pFreq:number[]=new Array(26).fill(0)
+  let currentFreq:number[]=new Array(26).fill(0)
 
   let start=0;
   let end=0
 
   for(let i=0;i<p.length;i++){
-    let code=p[i].charCodeAt(0)-97
+    let code=p.charCodeAt(i)%26
     pFreq[code]=(pFreq[code]||0)+1
   }
 
   while(end<s.length){
 
-    let code=s[end].charCodeAt(0)-97
+    let code=s.charCodeAt(end)%26
     currentFreq[code]=(currentFreq[code]||0)+1
+    
 
     if(end-start>=p.length-1){ 
   
-      let code=s[start].charCodeAt(0)-97
+      let code=s.charCodeAt(start)%26
 
       if(JSON.stringify(currentFreq)===JSON.stringify(pFreq)){
         answer.push(start)
       }
-      currentFreq[code]=(currentFreq[code]||1)-1
+      currentFreq[code]--
       start++;
     }
     
@@ -129,4 +130,39 @@ remove start element
   return answer
 }
 
+var findAnagrams3=(s,p)=>{
+ //Same as 2nd but different implementation
+
+    let answer:number[]=[];
+    let pFreq:number[]=new Array(26).fill(0)
+    let currentFreq:number[]=new Array(26).fill(0)
+
+  
+    for(let i=0;i<p.length;i++){
+      let code=s.charCodeAt(i)%26
+      pFreq[code]=(pFreq[code]||0)+1
+    }
+    
+    for(let i=0;i<s.length;i++){
+      let code=s.charCodeAt(i)%26
+      currentFreq[code]++;
+
+      if(i>p.length-1){
+        let code=s.charCodeAt(i-p.length)%26
+        currentFreq[code]--;
+        
+      }
+
+      if(i>=p.length-1){
+        if(JSON.stringify(currentFreq)===JSON.stringify(pFreq)){
+          answer.push(i-(p.length-1))
+        }
+      }
+
+    }
+   
+  
+    return answer
+  }
+  
 console.log(findAnagrams2("cbaebabacd","abc"))

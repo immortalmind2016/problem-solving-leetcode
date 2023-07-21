@@ -1,13 +1,5 @@
 //#438
 
-/*
-cbaebabacd p:"abc"
-s
-  e
-*/
-const sort=(s)=>{
-  return s.split("").sort().join("")
-}
 
 var findAnagrams=(s,p)=>{
 

@@ -115,7 +115,7 @@ remove start element
   
       let code=s.charCodeAt(start)%26
 
-      if(JSON.stringify(currentFreq)===JSON.stringify(pFreq)){
+      if(arrEqual(currentFreq,pFreq)){
         answer.push(start)
       }
       currentFreq[code]--
@@ -130,39 +130,18 @@ remove start element
   return answer
 }
 
-var findAnagrams3=(s,p)=>{
- //Same as 2nd but different implementation
-
-    let answer:number[]=[];
-    let pFreq:number[]=new Array(26).fill(0)
-    let currentFreq:number[]=new Array(26).fill(0)
-
-  
-    for(let i=0;i<p.length;i++){
-      let code=s.charCodeAt(i)%26
-      pFreq[code]=(pFreq[code]||0)+1
-    }
-    
-    for(let i=0;i<s.length;i++){
-      let code=s.charCodeAt(i)%26
-      currentFreq[code]++;
-
-      if(i>p.length-1){
-        let code=s.charCodeAt(i-p.length)%26
-        currentFreq[code]--;
-        
-      }
-
-      if(i>=p.length-1){
-        if(JSON.stringify(currentFreq)===JSON.stringify(pFreq)){
-          answer.push(i-(p.length-1))
-        }
-      }
-
-    }
-   
-  
-    return answer
+let arrEqual=(a,b)=>{
+  if(a.length!==b.length){
+    return false;
   }
-  
+  let isEqual=true;
+  for(let i=0;i<a.length;i++){
+    if(a[i]!==b[i]){
+      return false
+    }
+  }
+  return isEqual
+}
+
+
 console.log(findAnagrams2("cbaebabacd","abc"))

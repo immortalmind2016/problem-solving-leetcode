@@ -12,7 +12,24 @@ grid = [
 
 let DFS=(i,j,grid,visited)=>{
   let islandSize=0
+  const stack:number[][]=[[i,j]]
 
+  while(stack.length>0){
+    const currentNode:number[]=stack.pop() as number[]
+    const [i,j]=currentNode
+
+    if(visited[i][j]){
+      continue
+    }
+
+    //water
+    if(grid[i][j]=="0"){
+      continue
+    }
+
+    let adj=ADJ(i,j,grid,visited)
+    stack.push(...adj)
+  }
 
   return islandSize>0
 }

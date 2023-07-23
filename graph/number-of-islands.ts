@@ -10,24 +10,24 @@ grid = [
 
 */
 
-const ADJ=(i,j,grid)=>{
+const ADJ=(i,j,visited)=>{
   let adj:number[][]=[]
 
   //top
-  if(i>0&&grid[i-1][j]=="1"){
-    adj.push([i,j])
+  if(i>0&&!visited[i-1][j]){
+    adj.push([i-1,j])
   }
   //bot
-  if(i<grid.length-1&&grid[i+1][j]=="1"){
-    adj.push([i,j])
+  if(i<visited.length-1&&!visited[i+1][j]){
+    adj.push([i+1,j])
   }
   //left
-  if(j>0&&grid[i][j-1]=="1"){
-    adj.push([i,j])
+  if(j>0&&!visited[i][j-1]){
+    adj.push([i,j-1])
   }
   //right
-  if(j<grid[i].length-1&&grid[i][j+1]=="1"){
-    adj.push([i,j])
+  if(j<visited[i].length-1&&!visited[i][j+1]){
+    adj.push([i,j+1])
   }
   
   return adj
@@ -45,13 +45,17 @@ let DFS=(i,j,grid,visited)=>{
       continue
     }
 
+    visited[i][j]=true
+
     //water
     if(grid[i][j]=="0"){
       continue
     }
 
-    let adj=ADJ(i,j,grid)
+    let adj=ADJ(i,j,visited)
     stack.push(...adj)
+
+
   }
 
   return islandSize>0
@@ -76,3 +80,11 @@ const numberOfIslands=(grid:string[][])=>{
 
   return number
 }
+
+
+console.log(numberOfIslands( [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]))

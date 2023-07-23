@@ -10,9 +10,26 @@ grid = [
 
 */
 
-const ADJ=(i,j,grid,visited)=>{
-  let adj=[]
+const ADJ=(i,j,grid)=>{
+  let adj:number[][]=[]
 
+  //top
+  if(i>0&&grid[i-1][j]=="1"){
+    adj.push([i,j])
+  }
+  //bot
+  if(i<grid.length-1&&grid[i+1][j]=="1"){
+    adj.push([i,j])
+  }
+  //left
+  if(j>0&&grid[i][j-1]=="1"){
+    adj.push([i,j])
+  }
+  //right
+  if(j<grid[i].length-1&&grid[i][j+1]=="1"){
+    adj.push([i,j])
+  }
+  
   return adj
 }
 
@@ -33,7 +50,7 @@ let DFS=(i,j,grid,visited)=>{
       continue
     }
 
-    let adj=ADJ(i,j,grid,visited)
+    let adj=ADJ(i,j,grid)
     stack.push(...adj)
   }
 

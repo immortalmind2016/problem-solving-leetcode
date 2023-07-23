@@ -10,6 +10,13 @@ grid = [
 
 */
 
+let DFS=(i,j,grid,visited)=>{
+  let islandSize=0
+
+
+  return islandSize>0
+}
+
 const numberOfIslands=(grid:string[][])=>{
   
   let number=0
@@ -21,7 +28,7 @@ const numberOfIslands=(grid:string[][])=>{
   //iterate over islands and do DFS
   for(let i=0;i<grid.length;i++){
     for(let j=0;j<grid[i].length;j++){
-      if(DFS(i,j,visited)){
+      if(DFS(i,j,grid,visited)){
         number++;
       }
     }

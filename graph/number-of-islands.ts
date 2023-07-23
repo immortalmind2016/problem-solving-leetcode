@@ -10,6 +10,12 @@ grid = [
 
 */
 
+const ADJ=(i,j,grid,visited)=>{
+  let adj=[]
+
+  return adj
+}
+
 let DFS=(i,j,grid,visited)=>{
   let islandSize=0
   const stack:number[][]=[[i,j]]

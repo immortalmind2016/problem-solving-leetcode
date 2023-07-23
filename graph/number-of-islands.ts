@@ -9,3 +9,12 @@ grid = [
 ]
 
 */
+
+const numberOfIslands=(grid:number[][])=>{
+  
+  let number=0
+
+  //iterate over islands and do DFS
+
+  return number
+}

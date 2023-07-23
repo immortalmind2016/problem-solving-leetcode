@@ -55,7 +55,7 @@ let DFS=(i,j,grid,visited)=>{
     let adj=ADJ(i,j,visited)
     stack.push(...adj)
 
-
+    islandSize++;
   }
 
   return islandSize>0
